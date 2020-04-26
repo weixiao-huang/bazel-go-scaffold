@@ -20,3 +20,11 @@ def repositories():
         ],
         sha256 = "352c090cc3d3f9a6b4e676cf42a6047c16824959b438895a76c2989c6d7c246a",
     )
+
+    # Download the rules_docker repository at release v0.14.1
+    http_archive(
+        name = "io_bazel_rules_docker",
+        sha256 = "dc97fccceacd4c6be14e800b2a00693d5e8d07f69ee187babfd04a80a9f8e250",
+        strip_prefix = "rules_docker-0.14.1",
+        urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.14.1/rules_docker-v0.14.1.tar.gz"],
+    )

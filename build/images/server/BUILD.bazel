@@ -1,3 +1,12 @@
+load("//build:def.bzl", "project_image", "project_push")
+
+project_image(
+    base = "@centos7//image",
+    files = ["//cmd/server"],
+)
+
+project_push(repository = "server")
+
 filegroup(
     name = "package-srcs",
     srcs = glob(["**"]),
@@ -7,10 +16,7 @@ filegroup(
 
 filegroup(
     name = "all-srcs",
-    srcs = [
-        ":package-srcs",
-        "//build/images:all-srcs",
-    ],
+    srcs = [":package-srcs"],
     tags = ["automanaged"],
     visibility = ["//visibility:public"],
 )

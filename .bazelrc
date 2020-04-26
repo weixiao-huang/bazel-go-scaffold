@@ -1,3 +1,10 @@
+build --stamp
+run --stamp
+
+# populate env used for stamping builds etc
+build --workspace_status_command=./hack/print-workspace-status.sh
+run --workspace_status_command=./hack/print-workspace-status.sh
+
 # set GOPROXY
 test --action_env=GOPROXY=https://goproxy.cn
 build --action_env=GOPROXY=https://goproxy.cn

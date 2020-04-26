@@ -1,5 +1,15 @@
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
+def go_repositories_patches():
+    go_repository(
+        name = "com_github_google_go_containerregistry",
+        build_file_generation = "on",
+        build_file_proto_mode = "disable",
+        importpath = "github.com/google/go-containerregistry",
+        sum = "h1:oGqapkPUiypdS9ch/Vu0npPe03RQ0BhVDYli+OEKNAA=",
+        version = "v0.0.0-20200115214256-379933c9c22b",
+    )
+
 def go_repositories():
     go_repository(
         name = "com_github_davecgh_go_spew",

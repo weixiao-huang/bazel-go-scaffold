@@ -1,0 +1,32 @@
+load("@io_bazel_rules_docker//container:bundle.bzl", "container_bundle")
+load("@io_bazel_rules_docker//contrib:push-all.bzl", container_push_all = "container_push")
+
+container_bundle(
+    name = "bundle",
+    images = {
+        "{DOCKER_REGISTRY}/server:{DOCKER_TAG}": "//build/images/server:image",
+    },
+)
+
+container_push_all(
+    name = "push",
+    bundle = ":bundle",
+    format = "Docker",
+)
+
+filegroup(
+    name = "package-srcs",
+    srcs = glob(["**"]),
+    tags = ["automanaged"],
+    visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "all-srcs",
+    srcs = [
+        ":package-srcs",
+        "//build/images/server:all-srcs",
+    ],
+    tags = ["automanaged"],
+    visibility = ["//visibility:public"],
+)
