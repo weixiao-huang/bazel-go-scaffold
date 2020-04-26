@@ -1,0 +1,9 @@
+# set GOPROXY
+test --action_env=GOPROXY=https://goproxy.cn
+build --action_env=GOPROXY=https://goproxy.cn
+run --action_env=GOPROXY=https://goproxy.cn
+
+# set GOSUMDB as off, since GOSUMDB is unnecessary while using go_repository
+test --action_env=GOSUMDB=off
+build --action_env=GOSUMDB=off
+run --action_env=GOSUMDB=off

@@ -1,0 +1,32 @@
+# gazelle:exclude third_party
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/weixiao-huang/bazel-go-scaffold
+gazelle(
+    name = "gazelle",
+    command = "fix",
+)
+
+filegroup(
+    name = "package-srcs",
+    srcs = glob(
+        ["**"],
+        exclude = [
+            "bazel-*/**",
+            ".git/**",
+        ],
+    ),
+    tags = ["automanaged"],
+    visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "all-srcs",
+    srcs = [
+        ":package-srcs",
+        "//build:all-srcs",
+        "//cmd/server:all-srcs",
+    ],
+    tags = ["automanaged"],
+    visibility = ["//visibility:public"],
+)

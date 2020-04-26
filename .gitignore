@@ -1,0 +1,4 @@
+.idea
+/bazel-*
+**/.DS_Store
+.ijwb/
