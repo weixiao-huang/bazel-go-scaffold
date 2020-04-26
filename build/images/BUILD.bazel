@@ -5,6 +5,7 @@ container_bundle(
     name = "bundle",
     images = {
         "{DOCKER_REGISTRY}/server:{DOCKER_TAG}": "//build/images/server:image",
+        "{DOCKER_REGISTRY}/portal:{DOCKER_TAG}": "//build/images/portal:image",
     },
 )
 

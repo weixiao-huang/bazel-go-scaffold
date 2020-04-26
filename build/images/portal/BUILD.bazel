@@ -1,0 +1,23 @@
+load("//build:def.bzl", "project_image", "project_push")
+
+project_image(
+    base = "@centos7//image",
+    directory = "/",
+    tars = ["//portal"],
+)
+
+project_push(repository = "portal")
+
+filegroup(
+    name = "package-srcs",
+    srcs = glob(["**"]),
+    tags = ["automanaged"],
+    visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "all-srcs",
+    srcs = [":package-srcs"],
+    tags = ["automanaged"],
+    visibility = ["//visibility:public"],
+)
