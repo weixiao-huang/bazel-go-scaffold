@@ -22,6 +22,7 @@ You can use
 
 ```bash
 bazel build //build/images/server:image
+bazel build //build/images/portal:image
 ```
 
 to build image and use

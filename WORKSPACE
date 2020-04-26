@@ -47,10 +47,7 @@ yarn_install(
     package_json = "//portal:package.json",
     yarn_lock = "//portal:yarn.lock",
     quiet = False,
-    manual_build_file_contents = """filegroup(
-    name = "bin_files",
-    srcs = glob(["node_modules/.bin/*"]),
-)""",
+    manual_build_file_contents = """exports_files(["node_modules/.bin/vue-cli-service"])""",
 )
 
 # go support
