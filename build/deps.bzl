@@ -28,3 +28,10 @@ def repositories():
         strip_prefix = "rules_docker-0.14.1",
         urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.14.1/rules_docker-v0.14.1.tar.gz"],
     )
+
+    # Web deps support for portal
+    http_archive(
+        name = "build_bazel_rules_nodejs",
+        sha256 = "d0c4bb8b902c1658f42eb5563809c70a06e46015d64057d25560b0eb4bdc9007",
+        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/1.5.0/rules_nodejs-1.5.0.tar.gz"],
+    )

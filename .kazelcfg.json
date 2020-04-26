@@ -1,5 +1,7 @@
 {
     "GoPrefix": "github.com/weixiao-huang/bazel-go-scaffold",
     "AddSourcesRules": true,
-    "SkippedPaths": []
+    "SkippedPaths": [
+        "^portal"
+    ]
 }

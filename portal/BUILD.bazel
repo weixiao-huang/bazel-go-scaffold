@@ -1,0 +1,30 @@
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
+
+genrule(
+    name = "build",
+    outs = ["dist"],
+    srcs = ["@npm//:node_modules"] + glob(
+        ["**"],
+        exclude = ["node_modules/**"],
+    ),
+    # TODO: external/npm/node_modules is a hardcode path for @npm//:node_modules, should get package path of @npm
+    cmd = """
+        export PATH=$$PWD/$$(dirname $(location @nodejs//:node_bin)):$$PATH
+        vue_cli_service=$$PWD/$(location @npm//:node_modules/.bin/vue-cli-service) outs=$$PWD/$@
+        cd portal && ln -s ../external/npm/node_modules ./ && $$vue_cli_service build --dest $$outs
+    """,
+    tools = [
+        "@npm//:node_modules/.bin/vue-cli-service",
+        "@nodejs//:node_bin",
+    ],
+)
+
+pkg_tar(
+    name = "portal",
+    srcs = [":dist"],
+    extension = "tar.gz",
+    strip_prefix = ".",
+    package_dir = "/var/www/portal",
+    visibility = ["//visibility:public"],
+    mode = "0644",
+)
